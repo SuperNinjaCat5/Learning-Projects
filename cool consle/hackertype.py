@@ -3,6 +3,11 @@ from rich.progress import track
 import random
 import string
 import time
+import os
+
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
+clear_console()
 
 def generate_hack_text_lines(num_lines=50, line_length=60):
     chars = string.ascii_letters + string.digits + string.punctuation + " "
@@ -23,4 +28,4 @@ for line in track(
     print(f"[bold green]{line}[/bold green]")
     if random.random() < 0.3:  # 30% chance to add blank lines
         print("\n" * random.randint(1, 3))
-    time.sleep(0.1)
+    time.sleep(0.2)
