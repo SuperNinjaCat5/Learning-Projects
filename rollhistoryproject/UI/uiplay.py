@@ -2,7 +2,6 @@
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
-#from PIL import Image
 import random
 
 ctk.set_appearance_mode("Dark")           #"Dark", "Light", or "System"
