@@ -1,7 +1,10 @@
 import requests
 import os
+from dotenv import load_dotenv
 
-API_KEY = "ea8e6109-9fd5-481b-b7b9-c7194d3a1515"
+# Load environment variables from .env file
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -70,39 +73,6 @@ if __name__ == "__main__":
     if uuid:
         profile_ids = get_player_profiles(uuid)
         if profile_ids:
-            # For simplicity, we'll use the first profile ID
-            profile_data = get_skyblock_profile(profile_ids[0])
-            if profile_data:
-                skills = extract_skills(profile_data, uuid)
-                player_current = Player(skills, "No collections yet")
-                player_current.get_skill()
-                player_current.get_collections()
-            else:
-                print("No profile data found.")
-        else:
-            print("No profiles found for this player.")
-
-
-class Player:
-    def __init__(self, skills, collections):
-        self.skills = skills
-        self.collections = collections
-
-    def get_skill(self):
-        print("Skills:")
-        for skill, xp in self.skills.items():
-            print(f"  {skill.capitalize()}: {xp} XP")
-
-    def get_collections(self):
-        print(f"Collections: {self.collections}")
-
-if __name__ == "__main__":
-    clear_console()
-    uuid = get_player_uuid()
-    if uuid:
-        profile_ids = get_player_profiles(uuid)
-        if profile_ids:
-            # For simplicity, we'll use the first profile ID
             profile_data = get_skyblock_profile(profile_ids[0])
             if profile_data:
                 skills = extract_skills(profile_data, uuid)
